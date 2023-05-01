@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:  rgb(247 31 31 / 65%);
+        }
+        .mainDiv{
+            background-color: #e2f91e91;
+            width:200px;
+            margin:0px auto;
+            padding:20px;
+            border-radius:10px;
+            border:2px sandybrown solid;
+        }
+        input{
+            width:70%;
+            margin:0 auto;
+            height:20px;
+            font-size:18px;
+            border:0px;
+            padding:5px;
+        }
+        button{
+            width:43px;
+            height:30px;
+            font-size:15px;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="mainDiv">
+        <h2>Tictok Game</h2>
+        <div class="">
+            <table>
+                <tr>
+                    <td colspan="3"><button value="O">O</button><input type="text" id="first" placeholder="Enter First Player Name"/></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><button value="*">*</button><input type="text" id="second" placeholder="Gauransh"/></td>
+                </tr>
+                <tr>
+                    <td><button value="" id="1"></button></td>
+                    <td><button value="" id="2"></button></td>
+                    <td><button value="" id="3"></button></td>
+                </tr>
+                <tr>
+                    <td><button value="" id="4"></button></td>
+                    <td><button value="" id="5"></button></td>
+                    <td><button value="" id="6"></button></td>
+                </tr>
+                <tr>
+                    <td><button value="" id="7"></button></td>
+                    <td><button value="" id="8"></button></td>
+                    <td><button value="" id="9"></button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            let clickCount = 0;
+            let winner = 0;            
+            $('button').on('click',function(){
+
+                if($(this).text() !=='o' && $(this).text() !== '*')
+                {
+                    clickCount++;
+                    if(clickCount%2 !== 0){
+                        $(this).text('o');
+                    }
+                    else{
+                        $(this).text('*');
+                    }
+
+                    if($("#1").text() == $("#2").text() && $("#2").text() == $("#3").text() && ($("#1").text() == 'o' || $("#1").text() == '*')){                       
+                        winner = $("#1").text();
+                    }
+                    else if($("#4").text() == $("#5").text() && $("#6").text() == $("#4").text() && ($("#4").text() == 'o' || $("#4").text() == '*')){                      
+                        winner = $("#4").text();                        
+                    }
+                    else if($("#7").text() == $("#8").text() && $("#9").text() == $("#7").text() && ($("#7").text() == 'o' || $("#7").text() == '*')){
+                        winner = $("#7").text();
+                    }
+                    else if($("#1").text() == $("#5").text() && $("#9").text() == $("#1").text() && ($("#1").text() == 'o' || $("#1").text() == '*')){
+                        winner = $("#1").text();
+                    }
+                    else if($("#1").text() == $("#4").text() && $("#7").text() == $("#4").text() && ($("#1").text() == 'o' || $("#1").text() == '*')){
+                        winner = $("#1").text();
+                    }
+                    else if($("#2").text() == $("#5").text() && $("#8").text() == $("#2").text() && ($("#2").text() == 'o' || $("#2").text() == '*')){
+                        winner = $("#2").text();
+                    }
+                    else if($("#3").text() == $("#6").text() && $("#9").text() == $("#3").text() && ($("#3").text() == 'o' || $("#3").text() == '*')){
+                        winner = $("#3").text();
+                    }
+                    else if($("#3").text() == $("#5").text() && $("#7").text() == $("#3").text() && ($("#3").text() == 'o' || $("#3").text() == '*')){
+                        winner = $("#3").text();
+                    }
+                    else if($("#4").text() == $("#5").text() && $("#6").text() == $("#4").text() && ($("#4").text() == 'o' || $("#4").text() == '*')){
+                        winner = $("#1").text();                       
+                    }
+                    if(winner !== 0){
+                        if(winner == 'o'){
+                            winner = $("#first").val();
+                        }
+                        else {
+                            winner = $("#second").val();
+                        }
+                        alert("Player "+ winner +" is winner");
+                        clickCount = 0;
+                        winner = 0;
+                    }
+                    //alert(clickCount); 
+                }
+                
+
+            })
+        })
+    </script>
+</body>
+</html>
